@@ -1,15 +1,15 @@
-import { createElement } from "./util";
+import { element } from "./util";
 import "./style.css";
 
-const renderBody = () => {
-  const main = createElement({
+const app = () => {
+  return element({
     name: "main",
     children: [
-      createElement({
+      element({
         name: "h1",
         children: ["Welcome to Webpack Application!!"],
       }),
-      createElement({
+      element({
         name: "a",
         props: {
           href: "#",
@@ -19,8 +19,6 @@ const renderBody = () => {
       }),
     ],
   });
-
-  document.body.appendChild(main);
 };
 
-renderBody();
+document.body.appendChild(app());

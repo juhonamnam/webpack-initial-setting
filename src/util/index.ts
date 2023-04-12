@@ -1,5 +1,6 @@
 type Component<TagName extends keyof HTMLElementTagNameMap> = {
   name: TagName;
+  init?: (self: HTMLElementTagNameMap[TagName]) => void;
   options?: ElementCreationOptions;
   props?: {
     [prop in keyof HTMLElementTagNameMap[TagName]]?: HTMLElementTagNameMap[TagName][prop];
@@ -8,10 +9,12 @@ type Component<TagName extends keyof HTMLElementTagNameMap> = {
   children?: (string | Node)[];
 };
 
-export const createElement = <T extends keyof HTMLElementTagNameMap>(
+export const element = <T extends keyof HTMLElementTagNameMap>(
   component: Component<T>
 ) => {
   const element = document.createElement(component.name, component.options);
+
+  if (component.init) component.init(element);
 
   if (component.props) Object.assign(element, component.props);
 
