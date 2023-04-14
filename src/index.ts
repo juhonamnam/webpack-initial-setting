@@ -3,19 +3,47 @@ import "./style.css";
 
 const app = () => {
   return element({
-    name: "main",
+    tag: "div",
+    props: {
+      className: "App",
+    },
     children: [
       element({
-        name: "h1",
-        children: ["Welcome to Webpack Application!!"],
-      }),
-      element({
-        name: "a",
+        tag: "header",
         props: {
-          href: "#",
+          className: "App-header",
         },
-        events: [["click", () => alert("Hello World")]],
-        children: ["Click"],
+        children: [
+          element({
+            tag: "img",
+            props: {
+              src: "static/webpack-original.svg",
+              alt: "logo",
+              className: "App-logo",
+            },
+          }),
+          element({
+            tag: "p",
+            children: [
+              "Edit ",
+              element({
+                tag: "code",
+                children: ["src/index.ts"],
+              }),
+              " and save to reload",
+            ],
+          }),
+          element({
+            tag: "a",
+            props: {
+              className: "App-link",
+              href: "https://webpack.js.org/",
+              target: "_blank",
+              rel: "noopener noreferrer",
+            },
+            children: ["Learn Webpack"],
+          }),
+        ],
       }),
     ],
   });

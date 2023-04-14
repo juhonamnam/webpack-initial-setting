@@ -1,5 +1,5 @@
 type Component<TagName extends keyof HTMLElementTagNameMap> = {
-  name: TagName;
+  tag: TagName;
   init?: (self: HTMLElementTagNameMap[TagName]) => void;
   options?: ElementCreationOptions;
   props?: {
@@ -12,7 +12,7 @@ type Component<TagName extends keyof HTMLElementTagNameMap> = {
 export const element = <T extends keyof HTMLElementTagNameMap>(
   component: Component<T>
 ) => {
-  const element = document.createElement(component.name, component.options);
+  const element = document.createElement(component.tag, component.options);
 
   if (component.init) component.init(element);
 
